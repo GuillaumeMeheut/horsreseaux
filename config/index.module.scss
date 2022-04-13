@@ -1,0 +1,30 @@
+// Responsive
+$mobileBreakpoint: 767px;
+$tabletBreakpoint: 1023px;
+
+// Sizes
+$pageMaxWidth: 131.4em;
+$pageMargin: 2.1em;
+
+// Colors
+$black: #000000;
+
+// Fonts
+$regular: 400;
+$medium: 500;
+$semiBold: 600;
+$bold: 700;
+$extraBold: 800;
+
+// Blocks
+$blockShadow: 0 0 6em rgba(51, 15, 13, 0.25);
+
+// Mixins
+@import "./mixins/responsive.scss";
+
+// Export
+:export {
+  mobileBreakpoint: $mobileBreakpoint;
+  tabletBreakpoint: $tabletBreakpoint;
+  pageMaxWidth: $pageMaxWidth;
+}
