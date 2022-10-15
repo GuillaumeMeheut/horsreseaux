@@ -1,21 +1,21 @@
-@import "config/reset.css";
-@import "config/index.module.scss";
-
-// Fonts
-// @font-face {
-//   font-family: "Raleway";
-//   src: url("/fonts/raleway-regular.woff2") format("woff2"),
-//     url("/fonts/raleway-regular.woff") format("woff");
-//   font-weight: $regular;
-//   font-style: normal;
-//   font-display: swap;
-// }
+@import 'config/reset.css';
+@import 'config/index.module.scss';
 
 body {
-  font-size: 10px;
-  font-family: Raleway, Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
 }
 
-strong {
-  font-weight: $bold;
+h1 {
+  font-size: 36px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
 }
