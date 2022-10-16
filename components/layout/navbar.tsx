@@ -1,27 +1,27 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
+import { formatName } from 'utils/formatName'
 import css from './navbar.module.scss'
 
-export default function Navbar() {
+export default function Navbar({ nav }) {
   const router = useRouter()
-
-  const links = [
-    { name: 'Accueil', href: '/' },
-    { name: 'Les bonnes affaires', href: '/les-bonnes-affaires' },
-  ]
 
   return (
     <nav className={css.nav}>
-      {links.map((link) => (
-        <React.Fragment key={link.href}>
-          <Link href={link.href} passHref>
-            <a className={router.pathname === link.href ? css.active : ''}>
-              {link.name}
-            </a>
-          </Link>
-        </React.Fragment>
-      ))}
+      <Link href={'/'} passHref>
+        <a className={router.pathname === '/' ? css.active : ''}>Accueil</a>
+      </Link>
+      {nav.map((link) => {
+        const href = '/' + formatName(link)
+        return (
+          <React.Fragment key={link}>
+            <Link href={href} passHref>
+              <a className={router.asPath === href ? css.active : ''}>{link}</a>
+            </Link>
+          </React.Fragment>
+        )
+      })}
     </nav>
   )
 }
