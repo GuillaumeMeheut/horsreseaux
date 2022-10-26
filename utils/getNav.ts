@@ -1,12 +1,7 @@
+import { getPages } from './fetchData'
+
 export async function getNav() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/pages`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
+  const pages = await getPages()
 
-  const resJson = await res.json()
-
-  return resJson.data.map((data) => data.name)
+  return pages.data.map((data) => data.name)
 }

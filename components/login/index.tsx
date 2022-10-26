@@ -1,6 +1,3 @@
-import css from './header.module.scss'
-import Image from 'next/image'
-import Soleil from 'public/assets/soleil_couchant.jpg'
 import { useState } from 'react'
 
 export default function Login({ setIsLogged }) {

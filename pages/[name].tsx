@@ -1,6 +1,7 @@
 import Content from 'components/content'
 import Layout from 'components/layout'
 import type { NextPage } from 'next'
+import { getPage, getPages } from 'utils/fetchData'
 import { formatName, revertFormatName } from 'utils/formatName'
 import { getNav } from 'utils/getNav'
 
@@ -17,21 +18,9 @@ export default Home
 export const getStaticProps = async ({ params }) => {
   const { name } = params
 
-  const HEADERS = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }
+  const res = await getPage(name)
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/page?name=${name}`,
-    HEADERS,
-  )
-
-  const resJson = await res.json()
-
-  const content = resJson.data.content
+  const content = res.data.content
 
   return {
     props: {
@@ -42,16 +31,9 @@ export const getStaticProps = async ({ params }) => {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/pages`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
+  const res = await getPages()
 
-  const resJson = await res.json()
-
-  const paths = resJson.data.map((event) => ({
+  const paths = res.data.map((event) => ({
     params: { name: formatName(event.name) },
   }))
 
