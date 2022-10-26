@@ -13,26 +13,19 @@ const Home: NextPage = ({ content, nav }: any) => {
 
 export default Home
 
-export const getStaticProps = async ({ params }) => {
-  const HEADERS = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }
+export const getStaticProps = async ({}) => {
+  // let res = await fetch('http://localhost:3000/api/pages', {
+  //   method: 'GET',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // })
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API}/api/accueils`,
-    HEADERS,
-  )
-
-  const resJson = await res.json()
-
-  const content = resJson.data[0].attributes.contenue
+  // let resJson = await res.json()
 
   return {
     props: {
-      content,
+      content: 'nfios',
       nav: await getNav(),
     },
   }

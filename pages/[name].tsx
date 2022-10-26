@@ -25,15 +25,13 @@ export const getStaticProps = async ({ params }) => {
   }
 
   const res = await fetch(
-    `${
-      process.env.NEXT_PUBLIC_API
-    }/api/pages?filters[navigation][$eq]=${revertFormatName(name)}`,
+    `${process.env.NEXT_PUBLIC_URL}/api/page?name=${name}`,
     HEADERS,
   )
 
   const resJson = await res.json()
 
-  const content = resJson.data[0].attributes.contenue
+  const content = resJson.data.content
 
   return {
     props: {
@@ -44,7 +42,7 @@ export const getStaticProps = async ({ params }) => {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/pages`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/pages`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -54,7 +52,7 @@ export async function getStaticPaths() {
   const resJson = await res.json()
 
   const paths = resJson.data.map((event) => ({
-    params: { name: formatName(event.attributes.navigation) },
+    params: { name: formatName(event.name) },
   }))
 
   // We'll pre-render only these paths at build time.

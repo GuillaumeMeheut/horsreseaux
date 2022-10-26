@@ -1,12 +1,12 @@
 export async function getNav() {
-  const resNav = await fetch(`${process.env.NEXT_PUBLIC_API}/api/pages`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/pages`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
 
-  const resNavJson = await resNav.json()
+  const resJson = await res.json()
 
-  return resNavJson.data.map((data) => data.attributes.navigation)
+  return resJson.data.map((data) => data.name)
 }
